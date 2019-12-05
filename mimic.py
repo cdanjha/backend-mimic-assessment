@@ -80,8 +80,6 @@ def create_mimic_dict(imdev):
             mimic_dict[prev] = [word]
         else:
             mimic_dict[prev].append(word)
-    # Could write as: mimic_dict[prev] = mimic_dict.get(prev, []) + [word]
-    # It's one line, but not totally satisfying.
         prev = word
     return mimic_dict
     
