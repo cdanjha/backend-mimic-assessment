@@ -49,7 +49,7 @@ import sys
 __author__ = "???"
 
 
-def create_mimic_dict(filename):
+def create_mimic_dict(imdev):
     """Returns mimic dict mapping each word to list of words which follow it. 
     For example:
         Input: "I am a software developer, and I don't care who knows"
@@ -69,6 +69,19 @@ def create_mimic_dict(filename):
             }
     """
     # +++your code here+++
+    mimic_dict = {}
+    f = open(imdev, 'r')
+    text = f.read()
+    f.close()
+    words = text.split()
+    prev = ''
+    for word in words:
+        if not prev in mimic_dict:
+            mimic_dict[prev] = [word]
+        else:
+            mimic_dict[prev].append(word)
+        prev = word
+    return mimic_dict
     
 
 def print_mimic(mimic_dict, start_word):
@@ -79,6 +92,12 @@ def print_mimic(mimic_dict, start_word):
         - Repeat this process 200 times
     """
     # +++your code here+++
+    for unused_i in range(200):
+        print start_word,
+        nexts = mimic_dict.get(start_word)
+        if not nexts:
+            nexts = mimic_dict['']
+        start_word = random.choice(nexts)
     pass
 
 
